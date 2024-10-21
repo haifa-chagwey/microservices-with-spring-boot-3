@@ -1,0 +1,18 @@
+# Discovery server hostname
+eureka:
+  instance:
+    hostname: localhost
+  client:
+#    it is true by default, but we will turn it to false because Eureka does need to register itself with itself
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+server:
+  port: 8761
+
+# Read configuration from config server
+spring:
+  config:
+#    it does not fail to start if the config does not exist
+    import: optional:configserver:http://localhost:8888
