@@ -1,12 +1,17 @@
 # Discovery server hostname
-eureka:
-  instance:
-    hostname: localhost
   client:
-    #    it is true by default, but we will turn it to false because Eureka does need to register itself with itself
-    register-with-eureka: false
-    fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://localhost:${server.port}/eureka/
+    register-with-eureka: false  # No need to register Eureka with itself
+#    If you do not explicitly set the eureka.client.register-with-eureka property in your configuration,
+#    the default value is true, which means the service will automatically register itself with the Eureka server.
+#    This automatic registration happens because we have included the Eureka Client dependency in our project.
+#    Also, this allows Eureka client (Service A or Service B or ...) to query the Eureka server to find other services registered with it.
+#    The default behavior includes registering the service with the Eureka server as long as the Eureka server URL
+#    is correctly configured, and the eureka.client.register-with-eureka property remains true
+    fetch-registry: false  # No need to fetch the registry
+#    Note: The Eureka client can be configured to not register itself with the Eureka server while still being able to fetch the registry.
+#    (In case when it needs to know about other services registered in Eureka but does not want to expose itself as a service in the registry).
+
 server:
   port: 8761

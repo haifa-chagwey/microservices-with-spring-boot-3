@@ -1,7 +1,7 @@
 # Read configuration from config server
 spring:
   config:
-#    it does not fail to start if the config does not exist
+#    this microservice does not fail to start if configuration does not exist on config-server
     import: optional:configserver:http://localhost:8888
   application:
     name: discovery

@@ -1,22 +1,18 @@
-# We don't need to register it in Eureka
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: false  # No need to register it in Eureka server
 
 server:
   port: 8222
 
-# By default, it set to true
-# Fetch the information from the discovery server
 spring:
   application:
     name: gateway
-  #    Fetch the information from Discovery server
   cloud:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: true   # Fetch the information about registered microservices from Discovery server
       routes:
         - id: students
           uri: http://localhost:8090
@@ -26,4 +22,10 @@ spring:
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/schools/**
+
+# Zipkin config
+#management:
+#  tracing:
+#    sampling:
+#      probability: 1.0
 
