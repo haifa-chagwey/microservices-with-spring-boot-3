@@ -1,8 +1,8 @@
 # Discovery server hostname
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
+#    service-url:
+#      defaultZone: http://localhost:${server.port}/eureka/
     register-with-eureka: false  # No need to register Eureka with itself
 #    If you do not explicitly set the eureka.client.register-with-eureka property in your configuration,
 #    the default value is true, which means the service will automatically register itself with the Eureka server.
